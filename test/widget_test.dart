@@ -3,10 +3,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:lova_events/main.dart';
 
 void main() {
-  testWidgets('Lova Events home screen renders with online Supabase setup', (WidgetTester tester) async {
+  testWidgets('app redirects unauthenticated users to the login screen', (WidgetTester tester) async {
     await tester.pumpWidget(const LovaEventsApp());
 
-    expect(find.text('Lova Events'), findsWidgets);
-    expect(find.textContaining('Supabase en ligne'), findsOneWidget);
+    expect(find.text('Connexion'), findsOneWidget);
+    expect(find.text('Vous devez être connecté pour accéder à cette page.'), findsOneWidget);
   });
 }
