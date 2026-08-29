@@ -1,44 +1,70 @@
-# 💍 EventCraft AWS — Plateforme de Gestion d'Événements & Logistique
+# Lova Events
 
-> **AWS re:Deploy Cameroon 2026** — *Mois 2 : Event & Logistics*  
-> **Équipe :** Team Omega 
-> **Supervision :** Mme AYOKO Dehlia  
+Monorepo Flutter + Supabase pour une application événementielle responsive (mobile/web) avec backend et migrations versionnées.
 
----
+## Structure
 
-## 📌 Présentation du Projet
+```text
+.
+├── .env.example
+├── .env
+├── lib/
+│   └── main.dart
+├── supabase/
+│   ├── config.toml
+│   ├── .gitignore
+│   ├── seed.sql
+│   └── migrations/
+│       └── 20260829_init.sql
+├── test/
+│   └── widget_test.dart
+├── pubspec.yaml
+├── analysis_options.yaml
+├── README.md
+└── web/
+```
 
-**EventCraft AWS** est une application web Serverless conçue pour simplifier la planification financière et logistique d'événements (mariages traditionnels avec étapes comme le *Toquer-porte* ou la *Dot*, anniversaires, galas, etc.)[cite: 2, 6, 7].
+## Prérequis
 
-Elle combine un **moteur de recommandation intelligent** sous contrainte budgétaire[cite: 5], une **collecte de fonds familiale** (Mobile Money)[cite: 3], un système de **RSVP via Webhook WhatsApp**[cite: 1, 7], et un suivi automatisé des **échéances d'acomptes**[cite: 1, 6].
+- Flutter SDK 3.12+
+- Supabase project
+- Node.js si tu veux lancer Supabase localement
 
----
+## Configuration
 
-## 🏛️ Architecture Technique (AWS Serverless)
+1. Copier `.env.example` vers `.env`
+2. Remplir :
+   - `SUPABASE_URL`
+   - `SUPABASE_ANON_KEY`
+   - `SUPABASE_SERVICE_ROLE_KEY`
 
-* **Frontend :** React (Vite) / Next.js sur **AWS Amplify**
-* **API & Compute :** **Amazon API Gateway** + **AWS Lambda** (Python / Node.js)
-* **Base de Données :** **Amazon DynamoDB** (NoSQL On-Demand)
-* **Messagerie & Alertes :** Meta WhatsApp Graph API + **Amazon EventBridge Scheduler**
+## Lancer le projet
 
----
+```bash
+flutter pub get
+flutter run -d chrome
+```
 
-## 🧩 Découpage des Modules
+## Supabase
 
-| # | Module | Description | Responsables |
-| :-: | :--- | :--- | :--- |
-| **1** | **Événement & Étapes** | Création de l'événement, budget global brut et sous-événements | Team Omega[cite: 7] |
-| **2** | **Budget & Marge** | Marge de sécurité (5-30%) et enveloppes budgétaires plafonnées | Team Omega[cite: 2] |
-| **3** | **Catalogue Prestataires** | Référentiel des prestataires et de leurs offres chiffrées | Team Omega[cite: 6] |
-| **4** | **RSVP WhatsApp** | Gestion automatique des invitations/confirmations par Webhook | FOTSO Eryange Verdiane[cite: 1, 6, 7] |
-| **5** | **Moteur de Sélection** | Algorithme d'IA/Optimisation des offres selon le budget disponible | Team Omega[cite: 5] |
-| **6** | **Contribution Familiale** | Cagnotte collective en ligne (Mobile Money / Stripe) | Team Omega[cite: 3] |
-| **7** | **Alertes Acomptes** | Calendrier des échéances et rappels automatiques aux prestataires | FOTSO Eryange Verdiane[cite: 1, 6] |
+```bash
+supabase init
+supabase db push
+supabase start
+```
 
----
+## Idée d’architecture
 
-## 🎨 Charte Visuelle (Festif & Chaleureux)
+- Flutter app mobile/web responsive
+- Supabase Auth pour authentification
+- Supabase Database pour événements, prestataires et invitations
+- migrations SQL versionnées dans `supabase/migrations`
+- backend léger, centralisé autour de Supabase
 
-* **Couleur Principale :** Bordeaux `#6B1530` (Light) / `#9C2A4E` (Dark)[cite: 4]
-* **Couleur d'Accent :** Or festif `#D9A441` (Liseré doré de 2px sur les cartes)[cite: 4]
-* **Typographies :** `Playfair Display` (Titres) et `Nunito Sans` (Corps & Formulaires)[cite: 4]
+## Prochaines étapes
+
+- Authentification email / magic link
+- Dashboard client et prestataire
+- Événements, budget et RSVP
+- Intégration WhatsApp / notifications
+- Déploiement Vercel + Supabase
