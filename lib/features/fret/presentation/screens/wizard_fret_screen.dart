@@ -155,7 +155,7 @@ class _WizardFretScreenState extends ConsumerState<WizardFretScreen> {
                         onVehicleSelected: (value) => setState(() => _selectedVehicle = value),
                         onFrigoChanged: (value) => setState(() {
                           _necessiteFrigo = value;
-                          if (!value) {
+                          if (value) {
                             _selectedVehicle = TypeVehicule.camionFrigo;
                           }
                         }),
@@ -209,8 +209,18 @@ class _WizardFretScreenState extends ConsumerState<WizardFretScreen> {
                     if (wizardState.currentStep == 0 && !_step1FormKey.currentState!.validate()) {
                       return;
                     }
-                    if (wizardState.currentStep == 1 && !_step2FormKey.currentState!.validate()) {
-                      return;
+                    if (wizardState.currentStep == 1) {
+                      if (!_step2FormKey.currentState!.validate()) {
+                        return;
+                      }
+                      if (_necessiteFrigo && _selectedVehicle != TypeVehicule.camionFrigo) {
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('RG3 : le froid requis impose un camion frigorifique.'),
+                          ),
+                        );
+                        return;
+                      }
                     }
 
                     final notifier = ref.read(wizardFretNotifierProvider.notifier);

@@ -17,6 +17,8 @@ class FretWizardState {
     this.errorMessage,
   });
 
+  static const Object _sentinel = Object();
+
   final int currentStep;
   final String? draftId;
   final DemandeFret? demande;
@@ -30,7 +32,7 @@ class FretWizardState {
     DemandeFret? demande,
     List<ArticleFret>? articles,
     SaveState? saveState,
-    String? errorMessage,
+    Object? errorMessage = _sentinel,
   }) {
     return FretWizardState(
       currentStep: currentStep ?? this.currentStep,
@@ -38,7 +40,7 @@ class FretWizardState {
       demande: demande ?? this.demande,
       articles: articles ?? this.articles,
       saveState: saveState ?? this.saveState,
-      errorMessage: errorMessage ?? this.errorMessage,
+      errorMessage: errorMessage == _sentinel ? this.errorMessage : errorMessage as String?,
     );
   }
 }
@@ -70,6 +72,12 @@ class WizardFretNotifier extends Notifier<FretWizardState> {
         errorMessage: error.message,
       );
       rethrow;
+    } catch (error) {
+      state = state.copyWith(
+        saveState: SaveState.error,
+        errorMessage: error.toString(),
+      );
+      rethrow;
     }
   }
 
@@ -93,6 +101,12 @@ class WizardFretNotifier extends Notifier<FretWizardState> {
       state = state.copyWith(
         saveState: SaveState.error,
         errorMessage: error.message,
+      );
+      rethrow;
+    } catch (error) {
+      state = state.copyWith(
+        saveState: SaveState.error,
+        errorMessage: error.toString(),
       );
       rethrow;
     }
@@ -144,6 +158,12 @@ class WizardFretNotifier extends Notifier<FretWizardState> {
         errorMessage: error.message,
       );
       rethrow;
+    } catch (error) {
+      state = state.copyWith(
+        saveState: SaveState.error,
+        errorMessage: error.toString(),
+      );
+      rethrow;
     }
   }
 
@@ -181,6 +201,12 @@ class WizardFretNotifier extends Notifier<FretWizardState> {
         errorMessage: error.message,
       );
       rethrow;
+    } catch (error) {
+      state = state.copyWith(
+        saveState: SaveState.error,
+        errorMessage: error.toString(),
+      );
+      rethrow;
     }
   }
 
@@ -216,6 +242,12 @@ class WizardFretNotifier extends Notifier<FretWizardState> {
         errorMessage: error.message,
       );
       rethrow;
+    } catch (error) {
+      state = state.copyWith(
+        saveState: SaveState.error,
+        errorMessage: error.toString(),
+      );
+      rethrow;
     }
   }
 
@@ -239,6 +271,12 @@ class WizardFretNotifier extends Notifier<FretWizardState> {
       state = state.copyWith(
         saveState: SaveState.error,
         errorMessage: error.message,
+      );
+      rethrow;
+    } catch (error) {
+      state = state.copyWith(
+        saveState: SaveState.error,
+        errorMessage: error.toString(),
       );
       rethrow;
     }
