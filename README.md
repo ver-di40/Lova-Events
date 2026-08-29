@@ -45,13 +45,23 @@ flutter pub get
 flutter run -d chrome
 ```
 
-## Supabase
+## Supabase en ligne
+
+1. Créer un projet sur https://supabase.com
+2. Ouvrir le projet puis aller dans Project Settings > API
+3. Copier :
+   - `URL`
+   - `anon/public` key
+   - `service_role` key
+4. Remplir le fichier `.env` avec ces valeurs
+5. Lancer l’application :
 
 ```bash
-supabase init
-supabase db push
-supabase start
+flutter pub get
+flutter run -d chrome
 ```
+
+> Le projet est configuré pour Supabase cloud et ne dépend pas d’un environnement local Supabase.
 
 ## Idée d’architecture
 

@@ -87,7 +87,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                   const SizedBox(height: 24),
                   Text(
-                    'Application événementielle connectée à Supabase',
+                    'Application événementielle connectée à Supabase en ligne',
                     textAlign: TextAlign.center,
                     style: theme.textTheme.headlineMedium?.copyWith(
                       fontWeight: FontWeight.w700,
